@@ -1,0 +1,73 @@
+`timescale 1ns / 1ps
+//////////////////////////////////////////////////////////////////////////////////
+// Company: 
+// Engineer: 
+// 
+// Create Date: 16.02.2024 17:01:50
+// Design Name: 
+// Module Name: Vivado_2
+// Project Name: 
+// Target Devices: 
+// Tool Versions: 
+// Description: 
+// 
+// Dependencies: 
+// 
+// Revision:
+// Revision 0.01 - File Created
+// Additional Comments:
+// 
+//////////////////////////////////////////////////////////////////////////////////
+//sw[0], sw[1], sw[2], sw[3], sw[4], sw[5], sw[6], sw[7], sw[8] 
+//A1   , A2   , A3   , A4   , B1   , B2   , B3   ,B4    , CIN
+
+//LED0, LED1, LED2, LED3, LED4
+//S0  , S1  , S2  , S3  ,COUT
+module Vivado_2(
+    input [0:8]sw, //entradas
+    
+    output LED0, //salidas
+    output LED1,
+    output LED2,
+    output LED3,
+    output LED4
+    );
+    //compuertas
+    logic C1,C2,C3,C4,C5,C6,C7,C8,C9,C10,C11,C12,C13,C14 ,C15,C16,C17,C18,C19,C20;
+    
+    //salidas
+    assign LED0 = C3;
+    assign LED1 = C8;
+    assign LED2 = C13;
+    assign LED3 = C18;
+    assign LED4 = C20;
+    
+    //sumador 1
+    assign C1 = sw[0] ^ sw[4];
+    assign C2 = sw[0] & sw[4];
+    assign C3 = C1 ^ sw[8];
+    assign C4 = C1 & sw[8];
+    assign C5 = C2 | C4;
+    
+    //sumador 2
+    assign C6 = sw[1] ^ sw[5];
+    assign C7 = sw[1] & sw[5];
+    assign C8 = C6 ^ C5;
+    assign C9 = C6 & C5;
+    assign C10 = C7 | C9;
+    
+    //sumador3
+    assign C11 = sw[2] ^ sw[6];
+    assign C12 = sw[2] & sw[6];
+    assign C13 = C11 ^ C10;
+    assign C14 = C11 & C10;
+    assign C15 = C12 | C14;
+    
+    //sumador4
+    assign C16 = sw[3] ^ sw[7];
+    assign C17 = sw[3] & sw[7];
+    assign C18 = C16 ^ C15;
+    assign C19 = C16 & C15;
+    assign C20 = C17 | C19;
+    
+endmodule
